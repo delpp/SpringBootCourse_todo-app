@@ -1,0 +1,1 @@
+spring.datasource.url: 'jdbc:h2:file:/Users/ALTMAC03/git-intelliJ/SpringBootCourse_todo-app/todo-db'
