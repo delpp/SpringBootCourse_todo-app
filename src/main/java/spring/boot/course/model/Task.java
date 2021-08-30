@@ -15,10 +15,14 @@ public class Task {
     private String description;
     private boolean done;
     private LocalDateTime deadline;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
+    @Embedded
+    private Audit audit = new Audit();
+    @ManyToOne
+    @JoinColumn(name = "task_group_id")
+    private TaskGroup group;
 
-    public Task() {
+
+    public Task(){
     }
 
     public int getId() {
@@ -53,20 +57,18 @@ public class Task {
         this.deadline = deadline;
     }
 
+    TaskGroup getGroup() {
+        return group;
+    }
+
+    void setGroup(TaskGroup group) {
+        this.group = group;
+    }
+
     public void updateFrom(final Task source){
         description = source.description;
         done = source.done;
         deadline = source.deadline;
-    }
-
-
-    @PrePersist
-    void prePersist(){
-        createdOn = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    void preMarge(){
-        updatedOn = LocalDateTime.now();
+        group = source.group;
     }
 }
