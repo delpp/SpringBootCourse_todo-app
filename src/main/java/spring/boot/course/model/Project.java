@@ -14,18 +14,16 @@ public class Project {
     @NotBlank(message = "Project's description must not be empty")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "task_group_id")
-    private Set<TaskGroup> taskGroups;
+    @OneToMany(mappedBy = "project")
+    private Set<TaskGroup> groups;
 
-    @OneToMany
-    @JoinColumn(name = "project_steps_id")
-    private Set<ProjectSteps> projectSteps;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    private Set<ProjectSteps> steps;
 
     public Project() {
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 
@@ -33,7 +31,7 @@ public class Project {
         this.id = id;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -41,11 +39,15 @@ public class Project {
         this.description = description;
     }
 
-    Set<TaskGroup> getTaskGroups() {
-        return taskGroups;
+    Set<TaskGroup> getGroups() {
+        return groups;
     }
 
-    void setTaskGroups(Set<TaskGroup> group) {
-        this.taskGroups = group;
+    void setGroups(Set<TaskGroup> group) {
+        this.groups = group;
     }
+
+    Set<ProjectSteps> getSteps() { return steps; }
+
+    void setSteps(Set<ProjectSteps> projectSteps) { this.steps = projectSteps;}
 }
