@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import spring.boot.course.model.Project;
 import spring.boot.course.model.ProjectRepository;
-import spring.boot.course.model.TaskGroup;
 
 import java.util.List;
 
