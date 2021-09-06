@@ -39,7 +39,7 @@ public class Project {
         this.description = description;
     }
 
-    Set<TaskGroup> getGroups() {
+    public Set<TaskGroup> getGroups() {
         return groups;
     }
 
@@ -47,7 +47,7 @@ public class Project {
         this.groups = group;
     }
 
-    Set<ProjectSteps> getSteps() { return steps; }
+    public Set<ProjectSteps> getSteps() { return steps; }
 
     void setSteps(Set<ProjectSteps> projectSteps) { this.steps = projectSteps;}
 }

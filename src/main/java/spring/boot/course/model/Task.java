@@ -58,7 +58,7 @@ public class Task {
         return deadline;
     }
 
-    void setDeadline(LocalDateTime deadline) {
+    public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
 
