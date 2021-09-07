@@ -32,13 +32,14 @@ public class ProjectService {
     }
 
     public GroupReadModel createGroup(LocalDateTime date, int projectId){
-        Project project = repository.findById(projectId)
-                .orElseThrow(() -> new IllegalArgumentException("Wrong project's id"));
-
         if (!taskConfigurationProperties.getTemplate().isAllowMultipleTasks()
                 && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
             throw new IllegalStateException("Only one undone group from project is allowed");
         }
+
+        Project project = repository.findById(projectId)
+                .orElseThrow(() -> new IllegalArgumentException("Wrong project's id"));
+
 
         TaskGroup taskGroup = new TaskGroup();
         taskGroup.setDescription(project.getDescription());
