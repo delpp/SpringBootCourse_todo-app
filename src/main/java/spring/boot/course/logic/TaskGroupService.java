@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequestScope
-public class TempGroupService {
+public class TaskGroupService {
     private TaskGroupRepository repository;
     private TaskRepository taskRepository;
 
-    public TempGroupService(final TaskGroupRepository repository, final TaskRepository taskRepository) {
+    public TaskGroupService(final TaskGroupRepository repository, final TaskRepository taskRepository) {
         this.repository = repository;
         this.taskRepository = taskRepository;
     }
@@ -43,5 +43,6 @@ public class TempGroupService {
         TaskGroup result = repository.findById(groupId)
                 .orElseThrow(() -> new IllegalArgumentException("TaskGroup with given id not found"));
         result.setDone(!result.isDone());
+        repository.save(result);
     }
 }
